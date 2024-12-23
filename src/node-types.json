@@ -1,0 +1,403 @@
+[
+  {
+    "type": "cell_card",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "cell_card_like",
+          "named": true
+        },
+        {
+          "type": "cell_card_mat",
+          "named": true
+        },
+        {
+          "type": "cell_card_void",
+          "named": true
+        },
+        {
+          "type": "endline",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "cell_card_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "cell_card",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "cell_card_like",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "cell_id",
+          "named": true
+        },
+        {
+          "type": "cell_parameters",
+          "named": true
+        },
+        {
+          "type": "other_cell_id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "cell_card_mat",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "cell_geometry",
+          "named": true
+        },
+        {
+          "type": "cell_id",
+          "named": true
+        },
+        {
+          "type": "cell_parameters",
+          "named": true
+        },
+        {
+          "type": "mat_dens",
+          "named": true
+        },
+        {
+          "type": "mat_id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "cell_card_void",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "cell_geometry",
+          "named": true
+        },
+        {
+          "type": "cell_id",
+          "named": true
+        },
+        {
+          "type": "cell_parameters",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "cell_geometry",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "cell_geometry",
+          "named": true
+        },
+        {
+          "type": "complement",
+          "named": true
+        },
+        {
+          "type": "half_space",
+          "named": true
+        },
+        {
+          "type": "intersect",
+          "named": true
+        },
+        {
+          "type": "union",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "complement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "cell_geometry",
+          "named": true
+        },
+        {
+          "type": "cell_id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "data_card_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "endline",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "endline",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "inline_comment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "intersect",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "cell_geometry",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "cell_geometry",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "other_card_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "endline",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "cell_card_block",
+          "named": true
+        },
+        {
+          "type": "data_card_block",
+          "named": true
+        },
+        {
+          "type": "delimiter",
+          "named": true
+        },
+        {
+          "type": "header",
+          "named": true
+        },
+        {
+          "type": "other_card_block",
+          "named": true
+        },
+        {
+          "type": "surface_card_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "surface_card_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "endline",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "union",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "cell_geometry",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "cell_geometry",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "#",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": "0",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "but",
+    "named": false
+  },
+  {
+    "type": "cell_id",
+    "named": true
+  },
+  {
+    "type": "cell_parameters",
+    "named": true
+  },
+  {
+    "type": "comment",
+    "named": true
+  },
+  {
+    "type": "data",
+    "named": false
+  },
+  {
+    "type": "delimiter",
+    "named": true
+  },
+  {
+    "type": "half_space",
+    "named": true
+  },
+  {
+    "type": "header",
+    "named": true
+  },
+  {
+    "type": "inline_comment",
+    "named": true
+  },
+  {
+    "type": "like",
+    "named": false
+  },
+  {
+    "type": "line_continuation",
+    "named": true
+  },
+  {
+    "type": "mat_dens",
+    "named": true
+  },
+  {
+    "type": "mat_id",
+    "named": true
+  },
+  {
+    "type": "other data",
+    "named": false
+  },
+  {
+    "type": "other_cell_id",
+    "named": true
+  },
+  {
+    "type": "surface",
+    "named": false
+  }
+]
