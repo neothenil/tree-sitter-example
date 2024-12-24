@@ -50,7 +50,7 @@ module.exports = grammar({
 
     cell_card_like: $ => seq(
       alias($.positive_integer, $.cell_id), "like",
-      alias($.positive_integer, $.other_cell_id), "but", optional($.cell_like_parameters)),
+      alias($.positive_integer, $.other_cell_id), "but", $.cell_like_parameters),
 
     cell_geometry: $ => choice(
       $.union,
