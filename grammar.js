@@ -45,12 +45,12 @@ module.exports = grammar({
     cell_card_mat: $ => seq(
       alias($.positive_integer, $.cell_id),
       alias($.positive_integer, $.mat_id),
-      alias(choice($.signed_integer, $.signed_float), $.mat_dens),
+      alias($.number, $.mat_dens),
       $.cell_geometry, optional($.cell_parameters)),
 
     cell_card_like: $ => seq(
       alias($.positive_integer, $.cell_id), "like",
-      alias($.positive_integer, $.other_cell_id), "but", optional($.cell_parameters)),
+      alias($.positive_integer, $.other_cell_id), "but", optional($.cell_like_parameters)),
 
     cell_geometry: $ => choice(
       $.union,
@@ -71,7 +71,101 @@ module.exports = grammar({
       seq("#", "(", $.cell_geometry, ")")
     )),
 
-    cell_parameters: $ => "cell_parameters",
+    cell_parameters: $ => repeat1($.cell_parameter),
+
+    cell_like_parameters: $ => repeat1($.cell_like_parameter),
+
+    cell_like_parameter: $ => choice(
+      $.cell_parameter,
+      $.cell_para_mat,
+      $.cell_para_dens
+    ),
+
+    cell_parameter: $ => choice(
+      $.cell_para_imp,
+      $.cell_para_vol,
+      $.cell_para_pwt,
+      $.cell_para_ext,
+      $.cell_para_fcl,
+      $.cell_para_wwn,
+      $.cell_para_dxc,
+      $.cell_para_nonu,
+      $.cell_para_pd,
+      $.cell_para_tmp,
+      $.cell_para_univ,
+      $.cell_para_trcl,
+      $.cell_para_lat,
+      $.cell_para_fill,
+      $.cell_para_elpt,
+      $.cell_para_cosy,
+      $.cell_para_bflcl,
+      $.cell_para_unc
+    ),
+
+    cell_para_imp: $ => seq("imp:", $.particles, optional("="), $.number),
+
+    cell_para_vol: $ => seq("vol", optional("="), $.number),
+
+    cell_para_pwt: $ => seq("pwt", optional("="), $.number),
+
+    cell_para_ext: $ => seq("ext:", $.particles, optional("="), $.stretch_para),
+
+    stretch_para: $ => choice(
+      "0",
+      seq(choice($.signed_float, "s"), optional(choice(seq("v", $.positive_integer), "x", "y", "z")))
+    ),
+
+    cell_para_fcl: $ => seq("fcl:", $.neutron_photon, optional("="), $.number),
+
+    cell_para_wwn: $ => seq("wwn", $.positive_integer, ":", $.particles, optional("="), $.number),
+
+    cell_para_dxc: $ => seq("dxc", optional($.signed_integer), ":", $.particles, optional("="), $.number),
+
+    cell_para_nonu: $ => seq("nonu", optional("="), alias(/[012]?/, $.value)),
+
+    cell_para_pd: $ => seq("pd", $.signed_integer, optional("="), $.number),
+
+    cell_para_tmp: $ => seq("tmp", $.positive_integer, optional("="), $.number),
+
+    cell_para_univ: $ => seq("u", optional("="), $.signed_integer),
+
+    cell_para_trcl: $ => choice($.trcl_number, $.trcl_matrix),
+    
+    trcl_number: $ => seq("trcl", optional("="), $.signed_integer),
+
+    trcl_matrix: $ => seq(optional("*"), "trcl", optional("="), "(", repeat1($.number), ")"),
+
+    cell_para_lat: $ => seq("lat", optional("="), alias(/[12]/, $.type)),
+
+    cell_para_fill: $ => choice($.fill_form1, $.fill_form2, $.fill_form3),
+
+    fill_form1: $ => seq("fill", optional("="), alias($.signed_integer, $.universe_id),
+      optional(seq("(", alias($.positive_integer, $.transform_id), ")"))),
+
+    fill_form2: $ => seq(optional("*"), "fill", optional("="), alias($.signed_integer, $.universe_id),
+      seq("(", $.number, $.number, $.number, repeat($.number), ")")),
+
+    fill_form3: $ => seq("fill", optional("="), 
+      alias($.signed_integer, $.i1), ":", alias($.signed_integer, $.i2),
+      alias($.signed_integer, $.j1), ":", alias($.signed_integer, $.j2),
+      alias($.signed_integer, $.k1), ":", alias($.signed_integer, $.k2),
+      repeat1($.signed_integer)),
+
+    cell_para_elpt: $ => seq("elpt:", $.particles, optional("="), $.number),
+
+    cell_para_cosy: $ => seq("cosy", optional("="), $.positive_integer),
+
+    cell_para_bflcl: $ => seq("bflcl", optional("="), $.positive_integer),
+
+    cell_para_unc: $ => seq("unc:", $.particles, optional("="), alias(/[01]/, $.uncollided)),
+
+    cell_para_mat: $ => seq("mat", optional("="), alias($.positive_integer, $.mat_id)),
+
+    cell_para_dens: $ => seq("rho", optional("="), alias($.number, $.mat_dens)),
+
+    particles: $ => /[npe\|quvfhl\+\-xyo!<>g/zk%^b_~cw@dtsa\*\?#](,[npe\|quvfhl\+\-xyo!<>g/zk%^b_~cw@dtsa\*\?#])*/,
+
+    neutron_photon: $ => /[np](,[np])*/,
 
     surface_card_block: $ => seq("surface", $.endline),
 
@@ -81,17 +175,17 @@ module.exports = grammar({
 
     delimiter: $ => /[ \t\r\f\v]*\n/,
 
-    inline_comment: $ => /\$.*?\n/,
+    inline_comment: $ => /\$[^\n]*?/,
 
     line_continuation: $ => token(choice(/\n[ \t]{5}/, /[ \t\r\f\v]+&[ \t\r\f\v]*\n/)),
 
     comment: $ => /[ \t\r\f\v]*c[ \t\r\f\v]+.*\n/,
 
-    endline: $ => choice(/(\n|\r\n)/, $.inline_comment),
-
-    signed_integer: $ => /[\+-]?[0-9]+/,
+    endline: $ => /(\n|\r\n)/,
 
     positive_integer: $ => /[1-9][0-9]*/,
+
+    signed_integer: $ => /[\+-]?[0-9]+/,
 
     signed_float: _ => {
       const digits = /[0-9]+/;
@@ -106,5 +200,7 @@ module.exports = grammar({
         )
       );
     },
+
+    number: $ => choice($.signed_integer, $.signed_float)
   }
 });
