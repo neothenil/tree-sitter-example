@@ -135,6 +135,10 @@
           "named": true
         },
         {
+          "type": "facet_half_space",
+          "named": true
+        },
+        {
           "type": "half_space",
           "named": true
         },
@@ -1082,6 +1086,10 @@
   {
     "type": "ext:",
     "named": false
+  },
+  {
+    "type": "facet_half_space",
+    "named": true
   },
   {
     "type": "fcl:",

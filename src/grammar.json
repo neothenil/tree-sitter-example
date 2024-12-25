@@ -234,6 +234,14 @@
           "type": "PREC",
           "value": 4,
           "content": {
+            "type": "SYMBOL",
+            "name": "facet_half_space"
+          }
+        },
+        {
+          "type": "PREC",
+          "value": 4,
+          "content": {
             "type": "SEQ",
             "members": [
               {
@@ -1883,6 +1891,38 @@
           "name": "signed_float"
         }
       ]
+    },
+    "facet_half_space": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[\\+-]"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "PATTERN",
+            "value": "[1-9][0-9]*"
+          },
+          {
+            "type": "STRING",
+            "value": "."
+          },
+          {
+            "type": "PATTERN",
+            "value": "[1-9][0-9]*"
+          }
+        ]
+      }
     }
   },
   "extras": [

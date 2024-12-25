@@ -57,6 +57,7 @@ module.exports = grammar({
       $.intersect,
       $.complement,
       prec(4, alias($.signed_integer, $.half_space)),
+      prec(4, $.facet_half_space),
       prec(4, seq("(", $.cell_geometry, ")"))
     ),
 
@@ -213,6 +214,12 @@ module.exports = grammar({
       );
     },
 
-    number: $ => choice($.signed_integer, $.signed_float)
+    number: $ => choice($.signed_integer, $.signed_float),
+    
+    facet_half_space: $ => {
+      const positive_integer = /[1-9][0-9]*/;
+      const sign = /[\+-]/;
+      return token(seq(optional(sign), positive_integer, '.', positive_integer));
+    }
   }
 });
