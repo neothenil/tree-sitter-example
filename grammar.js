@@ -167,7 +167,19 @@ module.exports = grammar({
 
     neutron_photon: $ => /[np](,[np])*/,
 
-    surface_card_block: $ => seq("surface", $.endline),
+    surface_card_block: $ => repeat1($.surface_card),
+
+    surface_card: $ => seq(optional(alias(/[\*\+]/, $.boundary_condition)),
+      alias($.positive_integer, $.surface_id),
+      optional(alias($.signed_integer, $.transform)),
+      alias(choice("p", "px", "py", "pz", "so", "s", "sx", "sy", "sz",
+          "c/x", "c/y", "c/z", "cx", "cy", "cz", "k/x", "k/y", "k/z", "kx", "ky", "kz",
+          "sq", "gq", "tx", "ty", "tz", "x", "y", "z", "box", "rpp", "sph", "rcc", "rhp",
+          "hex", "rec", "trc", "ell", "wed", "arb"),  $.type),
+      alias($._coeffs, $.coeffs),
+      $.endline),
+
+    _coeffs: $ => repeat1($.number),
 
     data_card_block: $ => seq("data", $.endline),
 

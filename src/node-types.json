@@ -642,6 +642,21 @@
     }
   },
   {
+    "type": "coeffs",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "complement",
     "named": true,
     "fields": {},
@@ -887,15 +902,50 @@
     }
   },
   {
+    "type": "surface_card",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "boundary_condition",
+          "named": true
+        },
+        {
+          "type": "coeffs",
+          "named": true
+        },
+        {
+          "type": "endline",
+          "named": true
+        },
+        {
+          "type": "surface_id",
+          "named": true
+        },
+        {
+          "type": "transform",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "surface_card_block",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "endline",
+          "type": "surface_card",
           "named": true
         }
       ]
@@ -988,6 +1038,10 @@
   {
     "type": "bflcl",
     "named": false
+  },
+  {
+    "type": "boundary_condition",
+    "named": true
   },
   {
     "type": "but",
@@ -1146,12 +1200,16 @@
     "named": true
   },
   {
-    "type": "surface",
-    "named": false
+    "type": "surface_id",
+    "named": true
   },
   {
     "type": "tmp",
     "named": false
+  },
+  {
+    "type": "transform",
+    "named": true
   },
   {
     "type": "transform_id",

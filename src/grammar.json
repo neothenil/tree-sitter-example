@@ -1403,17 +1403,249 @@
       "value": "[np](,[np])*"
     },
     "surface_card_block": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "surface_card"
+      }
+    },
+    "surface_card": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "surface"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "PATTERN",
+                "value": "[\\*\\+]"
+              },
+              "named": true,
+              "value": "boundary_condition"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "positive_integer"
+          },
+          "named": true,
+          "value": "surface_id"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "signed_integer"
+              },
+              "named": true,
+              "value": "transform"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "p"
+              },
+              {
+                "type": "STRING",
+                "value": "px"
+              },
+              {
+                "type": "STRING",
+                "value": "py"
+              },
+              {
+                "type": "STRING",
+                "value": "pz"
+              },
+              {
+                "type": "STRING",
+                "value": "so"
+              },
+              {
+                "type": "STRING",
+                "value": "s"
+              },
+              {
+                "type": "STRING",
+                "value": "sx"
+              },
+              {
+                "type": "STRING",
+                "value": "sy"
+              },
+              {
+                "type": "STRING",
+                "value": "sz"
+              },
+              {
+                "type": "STRING",
+                "value": "c/x"
+              },
+              {
+                "type": "STRING",
+                "value": "c/y"
+              },
+              {
+                "type": "STRING",
+                "value": "c/z"
+              },
+              {
+                "type": "STRING",
+                "value": "cx"
+              },
+              {
+                "type": "STRING",
+                "value": "cy"
+              },
+              {
+                "type": "STRING",
+                "value": "cz"
+              },
+              {
+                "type": "STRING",
+                "value": "k/x"
+              },
+              {
+                "type": "STRING",
+                "value": "k/y"
+              },
+              {
+                "type": "STRING",
+                "value": "k/z"
+              },
+              {
+                "type": "STRING",
+                "value": "kx"
+              },
+              {
+                "type": "STRING",
+                "value": "ky"
+              },
+              {
+                "type": "STRING",
+                "value": "kz"
+              },
+              {
+                "type": "STRING",
+                "value": "sq"
+              },
+              {
+                "type": "STRING",
+                "value": "gq"
+              },
+              {
+                "type": "STRING",
+                "value": "tx"
+              },
+              {
+                "type": "STRING",
+                "value": "ty"
+              },
+              {
+                "type": "STRING",
+                "value": "tz"
+              },
+              {
+                "type": "STRING",
+                "value": "x"
+              },
+              {
+                "type": "STRING",
+                "value": "y"
+              },
+              {
+                "type": "STRING",
+                "value": "z"
+              },
+              {
+                "type": "STRING",
+                "value": "box"
+              },
+              {
+                "type": "STRING",
+                "value": "rpp"
+              },
+              {
+                "type": "STRING",
+                "value": "sph"
+              },
+              {
+                "type": "STRING",
+                "value": "rcc"
+              },
+              {
+                "type": "STRING",
+                "value": "rhp"
+              },
+              {
+                "type": "STRING",
+                "value": "hex"
+              },
+              {
+                "type": "STRING",
+                "value": "rec"
+              },
+              {
+                "type": "STRING",
+                "value": "trc"
+              },
+              {
+                "type": "STRING",
+                "value": "ell"
+              },
+              {
+                "type": "STRING",
+                "value": "wed"
+              },
+              {
+                "type": "STRING",
+                "value": "arb"
+              }
+            ]
+          },
+          "named": true,
+          "value": "type"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_coeffs"
+          },
+          "named": true,
+          "value": "coeffs"
         },
         {
           "type": "SYMBOL",
           "name": "endline"
         }
       ]
+    },
+    "_coeffs": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "number"
+      }
     },
     "data_card_block": {
       "type": "SEQ",
