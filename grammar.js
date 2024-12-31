@@ -182,9 +182,47 @@ module.exports = grammar({
 
     _coeffs: $ => repeat1($.number),
 
-    data_card_block: $ => seq("data", $.endline),
+    data_card_block: $ => repeat1($.data_card),
 
-    other_card_block: $ => seq("other data", $.endline),
+    data_card: $ => seq(choice(
+      $.transform_card,
+      $.universe_card,
+      $.lattice_card,
+      $.fill_card,
+      $.importance_card,
+      $.ignored_data_card
+    ), $.endline),
+
+    transform_card: $ => seq(optional("*"), "tr", $.positive_integer, repeat1($.number)),
+
+    universe_card: $ => seq("u", repeat($.signed_integer)),
+
+    lattice_card: $ => seq("lat", repeat(alias(/[12]/, $.type))),
+
+    fill_card: $ => seq("fill", repeat($.signed_integer)),
+
+    importance_card: $ => seq("imp:", $.particles, repeat($.number)),
+
+    // This is a list of unsupported data card.
+    ignored_data_card: $ => seq(
+      choice("vol", "area", "uran", "mesh", "dawwg", "dm",
+        "embed", "embee", "embeb", "embem", "embtb", "embtm", "embde", "embdf",
+        "m", "mt", "mx", "mpn", "otfdb", "totnu", "nonu", "awtab", "xs", "void",
+        "mgopt", "drxs", "mode", "phys", "act", "cut", "elpt", "tmp", "thtme",
+        "dbrc", "mphys", "lca", "lcb", "lcc", "lea", "leb", "fmult", "tropt",
+        "unc", "cosyp", "cosy", "bfld", "bflcl", "field", /[\*\+]?f/, /\*?fi[rpc]5/,
+        "e", "t", /\*?c[0-9]+/, "de", "df", "em", "tm", "sf", "sd", "tf", "notrn",
+        "pert", "kpert", "ksen", "kopts", "tmesh", "endmd", "rmesh", "cmesh", "smesh",
+        "cora", "corb", "corc", "ergsh", "mshmf", /\*?fmesh/, "spdtl", "var", "wwe",
+        "wwt", "wwn", "wwp", "wwg", "wwge", "wwgt", "esplt", "tsplt", "ext", "vect",
+        "fcl", "dxt", "dd", "pd", "dxc", "bbrem", "pikmt", "spabi", "pwt", "nps",
+        "ctme", "stop", "rand", "print", "talnp", "prdmp", "ptrac", "mplot", "histp",
+        "pio", "read", "dbcn", "lost", "idum", "rdum", /z[abcd]/, "files", "disable",
+        "sdef", "si", "sp", "sb", "ds", "sc", "ssw", "ssr", "kcode", "ksrc", "kopts",
+        "hsrc", "burn", ),
+      repeat($.ignored_data)),
+
+    other_card_block: $ => /(.|\n)+/,
 
     delimiter: $ => /[ \t\r\f\v]*\n/,
 
@@ -220,6 +258,8 @@ module.exports = grammar({
       const positive_integer = /[1-9][0-9]*/;
       const sign = /[\+-]/;
       return token(seq(optional(sign), positive_integer, '.', positive_integer));
-    }
+    },
+
+    ignored_data: $ => /[^\s]+/
   }
 });

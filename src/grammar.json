@@ -1656,11 +1656,43 @@
       }
     },
     "data_card_block": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "data_card"
+      }
+    },
+    "data_card": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "data"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "transform_card"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "universe_card"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "lattice_card"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "fill_card"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "importance_card"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "ignored_data_card"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
@@ -1668,18 +1700,651 @@
         }
       ]
     },
-    "other_card_block": {
+    "transform_card": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "*"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "tr"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "positive_integer"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "number"
+          }
+        }
+      ]
+    },
+    "universe_card": {
       "type": "SEQ",
       "members": [
         {
           "type": "STRING",
-          "value": "other data"
+          "value": "u"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "signed_integer"
+          }
+        }
+      ]
+    },
+    "lattice_card": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "lat"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "PATTERN",
+              "value": "[12]"
+            },
+            "named": true,
+            "value": "type"
+          }
+        }
+      ]
+    },
+    "fill_card": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "fill"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "signed_integer"
+          }
+        }
+      ]
+    },
+    "importance_card": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "imp:"
         },
         {
           "type": "SYMBOL",
-          "name": "endline"
+          "name": "particles"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "number"
+          }
         }
       ]
+    },
+    "ignored_data_card": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "vol"
+            },
+            {
+              "type": "STRING",
+              "value": "area"
+            },
+            {
+              "type": "STRING",
+              "value": "uran"
+            },
+            {
+              "type": "STRING",
+              "value": "mesh"
+            },
+            {
+              "type": "STRING",
+              "value": "dawwg"
+            },
+            {
+              "type": "STRING",
+              "value": "dm"
+            },
+            {
+              "type": "STRING",
+              "value": "embed"
+            },
+            {
+              "type": "STRING",
+              "value": "embee"
+            },
+            {
+              "type": "STRING",
+              "value": "embeb"
+            },
+            {
+              "type": "STRING",
+              "value": "embem"
+            },
+            {
+              "type": "STRING",
+              "value": "embtb"
+            },
+            {
+              "type": "STRING",
+              "value": "embtm"
+            },
+            {
+              "type": "STRING",
+              "value": "embde"
+            },
+            {
+              "type": "STRING",
+              "value": "embdf"
+            },
+            {
+              "type": "STRING",
+              "value": "m"
+            },
+            {
+              "type": "STRING",
+              "value": "mt"
+            },
+            {
+              "type": "STRING",
+              "value": "mx"
+            },
+            {
+              "type": "STRING",
+              "value": "mpn"
+            },
+            {
+              "type": "STRING",
+              "value": "otfdb"
+            },
+            {
+              "type": "STRING",
+              "value": "totnu"
+            },
+            {
+              "type": "STRING",
+              "value": "nonu"
+            },
+            {
+              "type": "STRING",
+              "value": "awtab"
+            },
+            {
+              "type": "STRING",
+              "value": "xs"
+            },
+            {
+              "type": "STRING",
+              "value": "void"
+            },
+            {
+              "type": "STRING",
+              "value": "mgopt"
+            },
+            {
+              "type": "STRING",
+              "value": "drxs"
+            },
+            {
+              "type": "STRING",
+              "value": "mode"
+            },
+            {
+              "type": "STRING",
+              "value": "phys"
+            },
+            {
+              "type": "STRING",
+              "value": "act"
+            },
+            {
+              "type": "STRING",
+              "value": "cut"
+            },
+            {
+              "type": "STRING",
+              "value": "elpt"
+            },
+            {
+              "type": "STRING",
+              "value": "tmp"
+            },
+            {
+              "type": "STRING",
+              "value": "thtme"
+            },
+            {
+              "type": "STRING",
+              "value": "dbrc"
+            },
+            {
+              "type": "STRING",
+              "value": "mphys"
+            },
+            {
+              "type": "STRING",
+              "value": "lca"
+            },
+            {
+              "type": "STRING",
+              "value": "lcb"
+            },
+            {
+              "type": "STRING",
+              "value": "lcc"
+            },
+            {
+              "type": "STRING",
+              "value": "lea"
+            },
+            {
+              "type": "STRING",
+              "value": "leb"
+            },
+            {
+              "type": "STRING",
+              "value": "fmult"
+            },
+            {
+              "type": "STRING",
+              "value": "tropt"
+            },
+            {
+              "type": "STRING",
+              "value": "unc"
+            },
+            {
+              "type": "STRING",
+              "value": "cosyp"
+            },
+            {
+              "type": "STRING",
+              "value": "cosy"
+            },
+            {
+              "type": "STRING",
+              "value": "bfld"
+            },
+            {
+              "type": "STRING",
+              "value": "bflcl"
+            },
+            {
+              "type": "STRING",
+              "value": "field"
+            },
+            {
+              "type": "PATTERN",
+              "value": "[\\*\\+]?f"
+            },
+            {
+              "type": "PATTERN",
+              "value": "\\*?fi[rpc]5"
+            },
+            {
+              "type": "STRING",
+              "value": "e"
+            },
+            {
+              "type": "STRING",
+              "value": "t"
+            },
+            {
+              "type": "PATTERN",
+              "value": "\\*?c[0-9]+"
+            },
+            {
+              "type": "STRING",
+              "value": "de"
+            },
+            {
+              "type": "STRING",
+              "value": "df"
+            },
+            {
+              "type": "STRING",
+              "value": "em"
+            },
+            {
+              "type": "STRING",
+              "value": "tm"
+            },
+            {
+              "type": "STRING",
+              "value": "sf"
+            },
+            {
+              "type": "STRING",
+              "value": "sd"
+            },
+            {
+              "type": "STRING",
+              "value": "tf"
+            },
+            {
+              "type": "STRING",
+              "value": "notrn"
+            },
+            {
+              "type": "STRING",
+              "value": "pert"
+            },
+            {
+              "type": "STRING",
+              "value": "kpert"
+            },
+            {
+              "type": "STRING",
+              "value": "ksen"
+            },
+            {
+              "type": "STRING",
+              "value": "kopts"
+            },
+            {
+              "type": "STRING",
+              "value": "tmesh"
+            },
+            {
+              "type": "STRING",
+              "value": "endmd"
+            },
+            {
+              "type": "STRING",
+              "value": "rmesh"
+            },
+            {
+              "type": "STRING",
+              "value": "cmesh"
+            },
+            {
+              "type": "STRING",
+              "value": "smesh"
+            },
+            {
+              "type": "STRING",
+              "value": "cora"
+            },
+            {
+              "type": "STRING",
+              "value": "corb"
+            },
+            {
+              "type": "STRING",
+              "value": "corc"
+            },
+            {
+              "type": "STRING",
+              "value": "ergsh"
+            },
+            {
+              "type": "STRING",
+              "value": "mshmf"
+            },
+            {
+              "type": "PATTERN",
+              "value": "\\*?fmesh"
+            },
+            {
+              "type": "STRING",
+              "value": "spdtl"
+            },
+            {
+              "type": "STRING",
+              "value": "var"
+            },
+            {
+              "type": "STRING",
+              "value": "wwe"
+            },
+            {
+              "type": "STRING",
+              "value": "wwt"
+            },
+            {
+              "type": "STRING",
+              "value": "wwn"
+            },
+            {
+              "type": "STRING",
+              "value": "wwp"
+            },
+            {
+              "type": "STRING",
+              "value": "wwg"
+            },
+            {
+              "type": "STRING",
+              "value": "wwge"
+            },
+            {
+              "type": "STRING",
+              "value": "wwgt"
+            },
+            {
+              "type": "STRING",
+              "value": "esplt"
+            },
+            {
+              "type": "STRING",
+              "value": "tsplt"
+            },
+            {
+              "type": "STRING",
+              "value": "ext"
+            },
+            {
+              "type": "STRING",
+              "value": "vect"
+            },
+            {
+              "type": "STRING",
+              "value": "fcl"
+            },
+            {
+              "type": "STRING",
+              "value": "dxt"
+            },
+            {
+              "type": "STRING",
+              "value": "dd"
+            },
+            {
+              "type": "STRING",
+              "value": "pd"
+            },
+            {
+              "type": "STRING",
+              "value": "dxc"
+            },
+            {
+              "type": "STRING",
+              "value": "bbrem"
+            },
+            {
+              "type": "STRING",
+              "value": "pikmt"
+            },
+            {
+              "type": "STRING",
+              "value": "spabi"
+            },
+            {
+              "type": "STRING",
+              "value": "pwt"
+            },
+            {
+              "type": "STRING",
+              "value": "nps"
+            },
+            {
+              "type": "STRING",
+              "value": "ctme"
+            },
+            {
+              "type": "STRING",
+              "value": "stop"
+            },
+            {
+              "type": "STRING",
+              "value": "rand"
+            },
+            {
+              "type": "STRING",
+              "value": "print"
+            },
+            {
+              "type": "STRING",
+              "value": "talnp"
+            },
+            {
+              "type": "STRING",
+              "value": "prdmp"
+            },
+            {
+              "type": "STRING",
+              "value": "ptrac"
+            },
+            {
+              "type": "STRING",
+              "value": "mplot"
+            },
+            {
+              "type": "STRING",
+              "value": "histp"
+            },
+            {
+              "type": "STRING",
+              "value": "pio"
+            },
+            {
+              "type": "STRING",
+              "value": "read"
+            },
+            {
+              "type": "STRING",
+              "value": "dbcn"
+            },
+            {
+              "type": "STRING",
+              "value": "lost"
+            },
+            {
+              "type": "STRING",
+              "value": "idum"
+            },
+            {
+              "type": "STRING",
+              "value": "rdum"
+            },
+            {
+              "type": "PATTERN",
+              "value": "z[abcd]"
+            },
+            {
+              "type": "STRING",
+              "value": "files"
+            },
+            {
+              "type": "STRING",
+              "value": "disable"
+            },
+            {
+              "type": "STRING",
+              "value": "sdef"
+            },
+            {
+              "type": "STRING",
+              "value": "si"
+            },
+            {
+              "type": "STRING",
+              "value": "sp"
+            },
+            {
+              "type": "STRING",
+              "value": "sb"
+            },
+            {
+              "type": "STRING",
+              "value": "ds"
+            },
+            {
+              "type": "STRING",
+              "value": "sc"
+            },
+            {
+              "type": "STRING",
+              "value": "ssw"
+            },
+            {
+              "type": "STRING",
+              "value": "ssr"
+            },
+            {
+              "type": "STRING",
+              "value": "kcode"
+            },
+            {
+              "type": "STRING",
+              "value": "ksrc"
+            },
+            {
+              "type": "STRING",
+              "value": "kopts"
+            },
+            {
+              "type": "STRING",
+              "value": "hsrc"
+            },
+            {
+              "type": "STRING",
+              "value": "burn"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "ignored_data"
+          }
+        }
+      ]
+    },
+    "other_card_block": {
+      "type": "PATTERN",
+      "value": "(.|\\n)+"
     },
     "delimiter": {
       "type": "PATTERN",
@@ -1923,6 +2588,10 @@
           }
         ]
       }
+    },
+    "ignored_data": {
+      "type": "PATTERN",
+      "value": "[^\\s]+"
     }
   },
   "extras": [
