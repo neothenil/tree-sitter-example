@@ -1,0 +1,35 @@
+mcnp p px py pz
+c cell
+1    0     -1 -2 -3 -4 -5 -6 7                      
+99   0     #1 -8                   
+100   0    8
+
+c surface
+1    p    -10 0 0 -10 1 2 -10 2 1               
+2    p    10 0 0 10 1 2 10 2 1        
+3    p    0 -10 0 1 -10 2 2 -10 1 
+4    p    0 10 0 1 10 2 2 10 1 
+5    p    0 0 -10 1 2 -10 2 1 -10                
+6    p    0 0 10 1 2 10 2 1 10 
+7    p    1 -1 0 -1 1 0 -1 0 1 
+8    so     50
+c   1    px     -10               
+c   2    px     10               
+c   3    py     -10               
+c   4    py     10               
+c   5    pz     -10               
+c   6    pz     10               
+c   7    p      1 1 1 0 
+
+c material
+m1     1001.60c 2 8016.60c 1
+c source
+sdef pos=0 0 25 erg=1
+c tally
+f4:n  1 99
+sd4   1 1
+c 
+mode n
+imp:n 1 1 0
+nps   1e5
+print

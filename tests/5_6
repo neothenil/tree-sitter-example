@@ -1,0 +1,25 @@
+mcnp 
+c cell
+1     0    -1 2 -3 trcl=(10 0 0) imp:n=1
+2     0    -1 2 -3 trcl=(-10 0 0) imp:n=1
+99    0    #1 -13 imp:n=1
+100   0    13 imp:n=0
+
+c surface
+1     cy 4
+2     py 2
+3     py 20
+13    so     50
+
+c material
+m1     1001.60c 2 8016.60c 1
+c tr1 10 0 0 
+c source
+sdef pos=0 0 0 erg=1
+c tally
+f4:n  1 99
+sd4   1 1
+c 
+mode n
+nps   1e5
+print

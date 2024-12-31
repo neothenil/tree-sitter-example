@@ -7,6 +7,9 @@
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 
+const signed_integer_regex = /[\+-]?[0-9]+/;
+const number_regex = /[\+-]?([0-9]+|[0-9]+\.[0-9]*([eE][\+-]?[0-9]+)?|[0-9]*\.[0-9]+([eE][\+-]?[0-9]+)?|[0-9]+[eE][\+-]?[0-9]+?)/;
+
 module.exports = grammar({
   name: "example",
 
@@ -150,7 +153,7 @@ module.exports = grammar({
       alias($.signed_integer, $.i1), ":", alias($.signed_integer, $.i2),
       alias($.signed_integer, $.j1), ":", alias($.signed_integer, $.j2),
       alias($.signed_integer, $.k1), ":", alias($.signed_integer, $.k2),
-      repeat1($.signed_integer)),
+      repeat1(choice($.signed_integer, $.shortcut))),
 
     cell_para_elpt: $ => seq("elpt:", $.particles, optional("="), $.number),
 
@@ -193,15 +196,17 @@ module.exports = grammar({
       $.ignored_data_card
     ), $.endline),
 
-    transform_card: $ => seq(optional("*"), "tr", $.positive_integer, repeat1($.number)),
+    transform_card: $ => seq(optional("*"), "tr", $.positive_integer,
+      repeat1(choice($.number, $.shortcut))),
 
-    universe_card: $ => seq("u", repeat($.signed_integer)),
+    universe_card: $ => seq("u", repeat(choice($.signed_integer, $.shortcut))),
 
     lattice_card: $ => seq("lat", repeat(alias(/[12]/, $.type))),
 
-    fill_card: $ => seq("fill", repeat($.signed_integer)),
+    fill_card: $ => seq("fill", repeat(choice($.signed_integer, $.shortcut))),
 
-    importance_card: $ => seq("imp:", $.particles, repeat($.number)),
+    importance_card: $ => seq("imp:", $.particles,
+      repeat(choice($.number, $.shortcut))),
 
     // This is a list of unsupported data card.
     ignored_data_card: $ => seq(
@@ -236,7 +241,7 @@ module.exports = grammar({
 
     positive_integer: $ => /[1-9][0-9]*/,
 
-    signed_integer: $ => /[\+-]?[0-9]+/,
+    signed_integer: $ => signed_integer_regex,
 
     signed_float: _ => {
       const digits = /[0-9]+/;
@@ -252,13 +257,22 @@ module.exports = grammar({
       );
     },
 
-    number: $ => choice($.signed_integer, $.signed_float),
+    number: $ => number_regex,
     
     facet_half_space: $ => {
       const positive_integer = /[1-9][0-9]*/;
       const sign = /[\+-]/;
       return token(seq(optional(sign), positive_integer, '.', positive_integer));
     },
+
+    shortcut: $ => token(choice(
+      seq(optional(signed_integer_regex), "i"),
+      seq(optional(signed_integer_regex), "r"),
+      seq(number_regex, "m"),
+      seq(optional(signed_integer_regex), "j"),
+      seq(optional(signed_integer_regex), "log"),
+      seq(optional(signed_integer_regex), "ilog")
+    )),
 
     ignored_data: $ => /[^\s]+/
   }

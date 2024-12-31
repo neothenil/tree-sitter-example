@@ -742,6 +742,10 @@
       "required": false,
       "types": [
         {
+          "type": "shortcut",
+          "named": true
+        },
+        {
           "type": "signed_integer",
           "named": true
         }
@@ -819,6 +823,10 @@
           "named": true
         },
         {
+          "type": "shortcut",
+          "named": true
+        },
+        {
           "type": "signed_integer",
           "named": true
         }
@@ -854,6 +862,10 @@
         },
         {
           "type": "particles",
+          "named": true
+        },
+        {
+          "type": "shortcut",
           "named": true
         }
       ]
@@ -895,44 +907,6 @@
       "types": [
         {
           "type": "type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "mat_dens",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "signed_float",
-          "named": true
-        },
-        {
-          "type": "signed_integer",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "number",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "signed_float",
-          "named": true
-        },
-        {
-          "type": "signed_integer",
           "named": true
         }
       ]
@@ -1058,6 +1032,10 @@
         {
           "type": "positive_integer",
           "named": true
+        },
+        {
+          "type": "shortcut",
+          "named": true
         }
       ]
     }
@@ -1126,6 +1104,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "shortcut",
+          "named": true
+        },
         {
           "type": "signed_integer",
           "named": true
@@ -1510,6 +1492,10 @@
     "named": false
   },
   {
+    "type": "mat_dens",
+    "named": true
+  },
+  {
     "type": "mat_id",
     "named": true
   },
@@ -1564,6 +1550,10 @@
   {
     "type": "nps",
     "named": false
+  },
+  {
+    "type": "number",
+    "named": true
   },
   {
     "type": "otfdb",
@@ -1664,6 +1654,10 @@
   {
     "type": "sf",
     "named": false
+  },
+  {
+    "type": "shortcut",
+    "named": true
   },
   {
     "type": "si",

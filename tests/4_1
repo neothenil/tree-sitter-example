@@ -1,0 +1,23 @@
+mcnp 
+c cell
+1    0     -1  7                      
+99   0     #1 -8                   
+100   0    8
+
+c surface card
+1    box  -10 -10 -10 20 0 0 0 20 0 0 0 20
+7    p      1 1 1 0 
+8    so     50
+
+c material
+m1     1001.60c 2 8016.60c 1
+c source
+sdef pos=0 0 25 erg=1
+c tally
+f4:n  1 99
+sd4   1 1
+c 
+mode n
+imp:n 1 1 0
+nps   1e5
+print
