@@ -1667,8 +1667,17 @@
     "data_card_block": {
       "type": "REPEAT1",
       "content": {
-        "type": "SYMBOL",
-        "name": "data_card"
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "data_card"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "vertical_data_block"
+          }
+        ]
       }
     },
     "data_card": {
@@ -2384,6 +2393,130 @@
             "type": "SYMBOL",
             "name": "ignored_data"
           }
+        }
+      ]
+    },
+    "vertical_data_block": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "vertical_data_block_single_line"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "vertical_data_block_multiple_line"
+        }
+      ]
+    },
+    "vertical_data_block_single_line": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "ignored_data"
+            },
+            "named": true,
+            "value": "card_name"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "line_continuation"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "number"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "shortcut"
+              }
+            ]
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "endline"
+        }
+      ]
+    },
+    "vertical_data_block_multiple_line": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "vertical_header"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "vertical_data"
+          }
+        }
+      ]
+    },
+    "vertical_header": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "ignored_data"
+            },
+            "named": true,
+            "value": "card_name"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "endline"
+        }
+      ]
+    },
+    "vertical_data": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "number"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "shortcut"
+              }
+            ]
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "endline"
         }
       ]
     },

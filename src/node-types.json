@@ -729,6 +729,10 @@
         {
           "type": "data_card",
           "named": true
+        },
+        {
+          "type": "vertical_data_block",
+          "named": true
         }
       ]
     }
@@ -1116,6 +1120,117 @@
     }
   },
   {
+    "type": "vertical_data",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "endline",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "shortcut",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "vertical_data_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "vertical_data_block_multiple_line",
+          "named": true
+        },
+        {
+          "type": "vertical_data_block_single_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "vertical_data_block_multiple_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "vertical_data",
+          "named": true
+        },
+        {
+          "type": "vertical_header",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "vertical_data_block_single_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "card_name",
+          "named": true
+        },
+        {
+          "type": "endline",
+          "named": true
+        },
+        {
+          "type": "line_continuation",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "shortcut",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "vertical_header",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "card_name",
+          "named": true
+        },
+        {
+          "type": "endline",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "#",
     "named": false
   },
@@ -1178,6 +1293,10 @@
   {
     "type": "but",
     "named": false
+  },
+  {
+    "type": "card_name",
+    "named": true
   },
   {
     "type": "cell_id",

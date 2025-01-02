@@ -185,7 +185,7 @@ module.exports = grammar({
 
     _coeffs: $ => repeat1($.number),
 
-    data_card_block: $ => repeat1($.data_card),
+    data_card_block: $ => repeat1(choice($.data_card, $.vertical_data_block)),
 
     data_card: $ => seq(choice(
       $.transform_card,
@@ -226,6 +226,17 @@ module.exports = grammar({
         "sdef", "si", "sp", "sb", "ds", "sc", "ssw", "ssr", "kcode", "ksrc", "kopts",
         "hsrc", "burn", ),
       repeat($.ignored_data)),
+
+    vertical_data_block: $ => choice($.vertical_data_block_single_line, $.vertical_data_block_multiple_line),
+
+    vertical_data_block_single_line: $ => seq("#", repeat1(alias($.ignored_data, $.card_name)), $.line_continuation,
+      repeat1(choice($.number, $.shortcut)), $.endline),
+
+    vertical_data_block_multiple_line: $ => seq($.vertical_header, repeat1($.vertical_data)),
+
+    vertical_header: $ => seq("#", repeat1(alias($.ignored_data, $.card_name)), $.endline),
+
+    vertical_data: $ => seq(repeat1(choice($.number, $.shortcut)), $.endline),
 
     other_card_block: $ => /(.|\n)+/,
 
